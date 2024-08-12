@@ -7,5 +7,38 @@
     <link rel="stylesheet" href="style.css" />
     <script src="script.js"></script>
   </head>
-  <body></body>
+  <body>
+    <form novalidate>
+      <label for="email"
+        >E-Mail
+        <input type="email" name="email" id="input__email" />
+        <span id="input__email--error"></span>
+      </label>
+      <label for="country"
+        >Country
+        <input type="text" name="country" id="input__country" />
+        <span id="input__country--error"></span>
+      </label>
+      <label for="zipcode"
+        >ZIP-Code
+        <input type="number" name="zipcode" id="input__zipcode" />
+        <span id="input__zipcode--error"></span>
+      </label>
+      <label for="password"
+        >Password
+        <input type="password" name="password" id="input__password" />
+        <span id="input__password--error"></span>
+      </label>
+      <label for="password-confirm"
+        >Confirm Password
+        <input
+          type="password"
+          name="password-confirm"
+          id="input_password-confirm"
+        />
+        <span id="input_password-confirm--error"></span>
+      </label>
+      <button id="submit-btn" type="submit">Submit</button>
+    </form>
+  </body>
 </html>
