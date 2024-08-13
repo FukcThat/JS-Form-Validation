@@ -31,7 +31,7 @@ label {
     gap: 0.75rem;
 }
 
-input {
+input, select{
     height: 2rem;
     width: 100%;
     border: none;
