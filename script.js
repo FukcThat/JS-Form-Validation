@@ -18,10 +18,15 @@ const submitBtn = document.querySelector("#submit-btn");
 // Form Submit EventListener
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  if (!emailInput.validity.valid || !zipcodeInput.validity.valid) {
-    // or country, zipcode, password, confirm password are NOT valid
+  if (
+    !emailInput.validity.valid ||
+    !zipcodeInput.validity.valid ||
+    !passwordInput.validity.valid
+  ) {
+    // or country, confirm password are NOT valid
     showEmailError();
     showZipcodeError();
+    showPasswordError();
   }
 });
 
@@ -47,11 +52,21 @@ zipcodeInput.addEventListener("input", () => {
   }
 });
 
-// Password EventListener
-// Confirm Password Eventlistener
+// Password Input EventListener
+passwordInput.addEventListener("input", () => {
+  if (passwordInput.validity.valid) {
+    passwordInputError.textContent = "";
+    passwordInputError.className = "error";
+  } else {
+    showPasswordError();
+  }
+});
+
+// Confirm Password Input Eventlistener
 
 // Functions
 
+// Email Error Conditions
 const showEmailError = () => {
   if (emailInput.validity.valueMissing) {
     emailInputError.textContent = "Email pls.";
@@ -62,8 +77,7 @@ const showEmailError = () => {
   emailInputError.className = "error active";
 };
 
-// Zipcode Error
-
+// Zipcode Error Conditions
 const showZipcodeError = () => {
   if (zipcodeInput.validity.valueMissing) {
     zipcodeInputError.textContent = "Zip Code too, pls.";
@@ -71,4 +85,15 @@ const showZipcodeError = () => {
     zipcodeInputError.textContent = "Numbers only, ok?";
   }
   zipcodeInputError.className = "error active";
+};
+
+// Password Input Error Conditions
+const showPasswordError = () => {
+  if (passwordInput.validity.valueMissing) {
+    passwordInputError.textContent = "You're gonna need a password.";
+  } else if (passwordInput.validity.patternMismatch) {
+    passwordInputError.textContent =
+      "Lower Case, Upper Case, Number, Special Character, between 8 and 24 characters";
+  }
+  passwordInputError.className = "error active";
 };
