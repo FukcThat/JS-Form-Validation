@@ -12,6 +12,7 @@ const passwordConfirmInputError = document.querySelector(
   "#input__password-confirm--error"
 );
 const submitBtn = document.querySelector("#submit-btn");
+console.log(passwordConfirmInput);
 
 // Event Listeners
 
@@ -21,12 +22,14 @@ form.addEventListener("submit", (e) => {
   if (
     !emailInput.validity.valid ||
     !zipcodeInput.validity.valid ||
-    !passwordInput.validity.valid
+    !passwordInput.validity.valid ||
+    !passwordConfirmInput.validity.valid
   ) {
-    // or country, confirm password are NOT valid
+    // or country are NOT valid
     showEmailError();
     showZipcodeError();
     showPasswordError();
+    showConfirmPasswordError();
   }
 });
 
@@ -63,6 +66,14 @@ passwordInput.addEventListener("input", () => {
 });
 
 // Confirm Password Input Eventlistener
+passwordConfirmInput.addEventListener("input", () => {
+  if (passwordConfirmInput.validity.valid) {
+    passwordConfirmInputError.textContent = "";
+    passwordConfirmInputError.className = "error";
+  } else {
+    showConfirmPasswordError();
+  }
+});
 
 // Functions
 
@@ -96,4 +107,13 @@ const showPasswordError = () => {
       "Lower Case, Upper Case, Number, Special Character, between 8 and 24 characters";
   }
   passwordInputError.className = "error active";
+};
+
+// Confirm Password Error Conditions
+const showConfirmPasswordError = () => {
+  if (passwordConfirmInput.validity.valueMissing) {
+    passwordConfirmInputError.textContent = "Password needs confirmation";
+  } else if (!passwordConfirmInput.value === passwordInput.value) {
+    passwordConfirmInputError.textContent = "Needs to be the same as password";
+  }
 };

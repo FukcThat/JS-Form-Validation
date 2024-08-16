@@ -223,19 +223,32 @@
       </label>
       <label for="password">
         <span>Password</span>
-        <input type="password" name="password" id="input__password" required />
-        <span id="input__password--error"></span>
+        <input
+          type="password"
+          name="password"
+          id="input__password"
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+          required
+        />
+        <span id="input__password--error">
+          <h3>Password must contain the following:</h3>
+          <p id="length" class="invalid">At least <b>8 characters</b></p>
+          <p id="lowercase-letter" class="invalid">A <b>lowercase</b> letter</p>
+          <p id="uppercase-letter" class="invalid">
+            An <b>uppercase</b> letter
+          </p>
+          <p id="number" class="invalid">A <b>number</b></p>
+        </span>
       </label>
       <label for="password-confirm">
         <span>Confirm Password</span>
         <input
           type="password"
           name="password-confirm"
-          id="input_password-confirm"
-          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,24}$"
+          id="input__password-confirm"
           required
         />
-        <span id="input_password-confirm--error"></span>
+        <span id="input__password-confirm--error"></span>
       </label>
       <button id="submit-btn" type="submit">Submit</button>
     </form>
