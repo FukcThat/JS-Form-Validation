@@ -103,8 +103,7 @@ const showPasswordError = () => {
   if (passwordInput.validity.valueMissing) {
     passwordInputError.textContent = "You're gonna need a password.";
   } else if (passwordInput.validity.patternMismatch) {
-    passwordInputError.textContent =
-      "Lower Case, Upper Case, Number, Special Character, between 8 and 24 characters";
+    // add the whole shebang for validating each bit (upper & lowercase, number and min 8 char)
   }
   passwordInputError.className = "error active";
 };
